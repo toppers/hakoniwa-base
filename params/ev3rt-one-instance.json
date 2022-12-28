@@ -1,0 +1,54 @@
+{
+    "model": [
+        {
+            "type": "hackev",
+            "num": 1
+        }
+    ],
+    "dev": [
+        {
+            "type": "ev3rt",
+            "repo": "https://github.com/toppers/ev3rt-athrill-v850e2m.git",
+            "compiler": "https://github.com/toppers/athrill-gcc-v850e2m/releases/download/v1.1/athrill-gcc-package.tar.gz",
+            "ruby": "2.6.5",
+            "num": 1
+        }
+    ],
+    "runtime": [
+        {
+            "type": "athrill",
+            "repo": "https://github.com/toppers/athrill-target-v850e2m.git"
+        },
+        {
+            "type": "athrill-device",
+            "repo": "https://github.com/toppers/athrill-device.git",
+            "devs": [
+                "hakotime",
+                "hakopdu"
+            ],
+            "version": "1.0.0"
+        }
+    ],
+    "channels": [
+        {
+            "asset_name": "athrill1",
+            "type": "write",
+            "id": 0
+        },
+        {
+            "asset_name": "athrill1",
+            "type": "read",
+            "id": 1
+        },
+        {
+            "asset_name": "UnityAssetRpc",
+            "type": "write",
+            "id": 1
+        },
+        {
+            "asset_name": "UnityAssetRpc",
+            "type": "read",
+            "id": 0
+        }
+    ]
+}
