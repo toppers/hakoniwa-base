@@ -7,7 +7,7 @@ export DOCKER_DIR=/root/workspace
 
 #TODO AUTO GENERATION
 export ETHER=en0
-export CORE_IPADDR=127.0.0.1
+export CORE_IPADDR=192.168.65.3
 export DELTA_MSEC=10
 export MAX_DELAY_MSEC=100
 export GRPC_PORT=50051

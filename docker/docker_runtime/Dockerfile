@@ -51,14 +51,6 @@ RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
 	cd athrill && \
 	git pull
 
-WORKDIR /root
-RUN git clone --recursive https://github.com/toppers/athrill-device.git
-
-WORKDIR /root/athrill-device/device/hakotime
-RUN bash build.bash
-
-WORKDIR /root/athrill-device/device/hakopdu
-RUN bash build.bash
 
 RUN mkdir /usr/local/lib/hakoniwa
 RUN mkdir /usr/local/bin/hakoniwa
@@ -81,5 +73,16 @@ RUN apt-get install -y libc++-dev libc++abi-dev
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
 
+WORKDIR /root
+RUN git clone --recursive https://github.com/toppers/athrill-device.git
+
+WORKDIR /root/athrill-device/device/hakotime
+RUN bash build.bash
+
+WORKDIR /root/athrill-device/device/hakopdu
+RUN bash build.bash
+
 RUN cp /root/athrill-device/device/hakotime/cmake-build/libhakotime.* /usr/local/lib/hakoniwa/
 RUN cp /root/athrill-device/device/hakopdu/cmake-build/libhakopdu.* /usr/local/lib/hakoniwa/
+
+WORKDIR /root/workspace

@@ -21,7 +21,7 @@ else
 
     cd ${CURR_DIR}
     cd hakoniwa-master-rust/main
-    cp ../../hakoniwa-core-cpp-client/cmake-build/src/hakoc/libshakoc.* ${HAKO_BIN_DIR}/
+    cp ../../hakoniwa-core-cpp-client/cmake-build/src/hakoc/libshakoc.* ${HAKO_LIB_DIR}/
     cp ../../hakoniwa-core-cpp-client/cmake-build/src/proxy/hako-proxy ${HAKO_BIN_DIR}/
     cp ../../hakoniwa-core-cpp-client/cmake-build/core/sample/base-procs/hako-cmd/hako-cmd ${HAKO_BIN_DIR}/
 
