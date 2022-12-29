@@ -37,7 +37,6 @@ then
 		echo "Usage: $0 <port>"
 		exit 1
 	fi
-	ETHER=${1}
 	IPADDR=`ifconfig | grep -A1 ${ETHER} | grep netmask | awk '{print $2}'`
 else
 	IPADDR="127.0.0.1"
@@ -49,7 +48,6 @@ then
 		-v ${HOST_WORKDIR}:${DOCKER_DIR} \
 		-it --rm \
 		--net host \
-		-e CORE_IPADDR=${IPADDR} \
 		-e OS_TYPE=${OS_TYPE} \
 		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 else
@@ -59,7 +57,11 @@ else
 		-v `pwd`/hakoniwa-master-rust:${DOCKER_DIR}/hakoniwa-master-rust \
 		-it --rm \
 		--net host \
-		-e CORE_IPADDR=${IPADDR} \
-		-e OS_TYPE=${OS_TYPE} \
+		-e CORE_IPADDR=${CORE_IPADDR} \
+		-e DELTA_MSEC=${DELTA_MSEC} \
+		-e MAX_DELAY_MSEC=${MAX_DELAY_MSEC} \
+		-e GRPC_PORT=${GRPC_PORT} \
+		-e UDP_SRV_PORT=${UDP_SRV_PORT} \
+		-e UDP_SND_PORT=${UDP_SND_PORT} \
 		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 fi
