@@ -7,6 +7,7 @@
     ],
     "dev": [
         {
+            "image_name": "hakoniwa-single_robot-dev", 
             "type": "ev3rt",
             "repo": "https://github.com/toppers/ev3rt-athrill-v850e2m.git",
             "compiler": "https://github.com/toppers/athrill-gcc-v850e2m/releases/download/v1.1/athrill-gcc-package.tar.gz",
@@ -16,39 +17,54 @@
     ],
     "runtime": [
         {
+            "image_name": "hakoniwa-single_robot-runtime", 
             "type": "athrill",
-            "repo": "https://github.com/toppers/athrill-target-v850e2m.git"
-        },
-        {
-            "type": "athrill-device",
-            "repo": "https://github.com/toppers/athrill-device.git",
-            "devs": [
-                "hakotime",
-                "hakopdu"
-            ],
-            "version": "1.0.0"
+            "repo": "https://github.com/toppers/athrill-target-v850e2m.git",
+            "device": {
+                "repo": "https://github.com/toppers/athrill-device.git",
+                "devs": [
+                    "hakotime",
+                    "hakopdu"
+                ]    
+            }
         }
     ],
     "channels": [
         {
             "asset_name": "athrill1",
             "type": "write",
-            "id": 0
+            "data": "Raw",
+            "com": "udp",
+            "channel": 0
         },
         {
             "asset_name": "athrill1",
             "type": "read",
-            "id": 1
+            "data": "Raw",
+            "com": "udp",
+            "channel": 1
         },
         {
             "asset_name": "UnityAssetRpc",
             "type": "write",
-            "id": 1
+            "data": "Raw",
+            "com": "udp",
+            "channel": 1
         },
         {
             "asset_name": "UnityAssetRpc",
             "type": "read",
-            "id": 0
+            "data": "Raw",
+            "com": "udp",
+            "channel": 0
         }
-    ]
+    ],
+    "hakoniwa": {
+        "master": {
+            "ipaddr": "auto",
+            "grpc_portno": 50051,
+            "udp_srv_portno": 54001,
+            "udp_snd_portno": 54002
+        }
+    }
 }
