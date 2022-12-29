@@ -75,6 +75,9 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > ${RUST_HOME}/rus
     && ${RUST_HOME}/rustup.sh -y --default-toolchain nightly --no-modify-path
 ENV PATH $PATH:$CARGO_HOME/bin
 
+RUN apt-get install -y libc++-dev libc++abi-dev
+
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
+CMD ["/root/workspace/install.bash"]
 
