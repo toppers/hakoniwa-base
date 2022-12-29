@@ -6,6 +6,8 @@ then
 fi
 TYPE=${1}
 
+source docker/docker_${TYPE}/env.bash
+
 HAKONIWA_TOP_DIR=`pwd`
 IMAGE_NAME=`cat docker/docker_${TYPE}/image_name.txt`
 IMAGE_TAG=`cat docker/appendix/${TYPE}_latest_version.txt`
@@ -43,7 +45,8 @@ fi
 
 if [ ${OS_TYPE} != "Mac" ]
 then
-	docker run -v ${HAKONIWA_TOP_DIR}:/root/workspace/hakoniwa-ecu-multiplay \
+	docker run \
+		-v ${HOST_WORKDIR}:/root/ev3rt-athrill-v850e2m/sdk/src \
 		-it --rm \
 		--net host \
 		-e CORE_IPADDR=${IPADDR} \
@@ -51,4 +54,5 @@ then
 		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 else
 	#TODO
+	:
 fi

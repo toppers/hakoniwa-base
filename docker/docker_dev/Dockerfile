@@ -48,6 +48,11 @@ RUN git clone --depth 1 https://github.com/toppers/ev3rt-athrill-v850e2m.git && 
 	cd ev3rt-athrill-v850e2m && \
 	git pull
 
-RUN mkdir -p /root/workspace
-WORKDIR /root/workspace
+WORKDIR /root
+RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
+	cd athrill && \
+	git pull
+
+
+WORKDIR /root/ev3rt-athrill-v850e2m/sdk/src
 ENV RUBYOPT -EUTF-8
