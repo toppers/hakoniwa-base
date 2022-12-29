@@ -53,6 +53,11 @@ then
 		-e OS_TYPE=${OS_TYPE} \
 		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 else
-	#TODO
-	:
+	docker run \
+		-v ${HOST_WORKDIR}:/root/ev3rt-athrill-v850e2m/sdk/src \
+		-it --rm \
+		--net host \
+		-e CORE_IPADDR=${IPADDR} \
+		-e OS_TYPE=${OS_TYPE} \
+		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 fi
