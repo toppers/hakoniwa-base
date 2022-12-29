@@ -43,8 +43,6 @@ RUN	wget -q -O cmake-linux.sh https://github.com/Kitware/CMake/releases/download
 	rm cmake-linux.sh
 ENV PATH ${PATH}:${CMAKE_INSTALL_DIR}/bin
 
-WORKDIR /root
-RUN git clone --recursive https://github.com/toppers/athrill-device.git
 RUN apt-get update
 RUN apt-get install -y libspdlog-dev
 
@@ -52,6 +50,9 @@ WORKDIR /root
 RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
 	cd athrill && \
 	git pull
+
+WORKDIR /root
+RUN git clone --recursive https://github.com/toppers/athrill-device.git
 
 WORKDIR /root/athrill-device/device/hakotime
 RUN bash build.bash
@@ -80,3 +81,5 @@ RUN apt-get install -y libc++-dev libc++abi-dev
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
 
+RUN cp /root/athrill-device/device/hakotime/cmake-build/libhakotime.* /usr/local/lib/hakoniwa/
+RUN cp /root/athrill-device/device/hakopdu/cmake-build/libhakopdu.* /usr/local/lib/hakoniwa/

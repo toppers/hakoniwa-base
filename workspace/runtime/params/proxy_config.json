@@ -1,0 +1,15 @@
+{
+    "asset_name": "athrill1",
+    "target_exec_dir": "/root/workspace/run-athrill1",
+    "target_bin_path": "/root/athrill-target-v850e2m/athrill/bin/linux/athrill2",
+    "target_options": [
+        "-c1",
+        "-t",
+        "-1",
+        "-d",
+        "/root/workspace/params/device_config.txt",
+        "-m",
+        "/root/workspace/params/memory.txt",
+        "/root/workspace/dev/asp"
+    ]
+}

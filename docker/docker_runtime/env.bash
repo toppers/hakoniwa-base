@@ -1,6 +1,8 @@
 #!/bin/bash
 
+export HOST_DEVDIR=`pwd`/workspace/dev/src
 export HOST_WORKDIR=`pwd`/workspace/runtime
+export DOCKER_DEVDIR=/root/workspace/dev
 export DOCKER_DIR=/root/workspace
 
 #TODO AUTO GENERATION

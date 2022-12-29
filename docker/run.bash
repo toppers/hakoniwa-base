@@ -52,6 +52,7 @@ then
 		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 else
 	docker run \
+		-v ${HOST_DEVDIR}:${DOCKER_DEVDIR} \
 		-v ${HOST_WORKDIR}:${DOCKER_DIR} \
 		-v `pwd`/hakoniwa-core-cpp-client:${DOCKER_DIR}/hakoniwa-core-cpp-client \
 		-v `pwd`/hakoniwa-master-rust:${DOCKER_DIR}/hakoniwa-master-rust \
