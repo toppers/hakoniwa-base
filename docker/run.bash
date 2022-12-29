@@ -43,10 +43,10 @@ else
 	IPADDR="127.0.0.1"
 fi
 
-if [ ${OS_TYPE} != "Mac" ]
+if [ $TYPE = "dev" ]
 then
 	docker run \
-		-v ${HOST_WORKDIR}:/root/ev3rt-athrill-v850e2m/sdk/src \
+		-v ${HOST_WORKDIR}:${DOCKER_DIR} \
 		-it --rm \
 		--net host \
 		-e CORE_IPADDR=${IPADDR} \
@@ -54,7 +54,9 @@ then
 		--name ${IMAGE_NAME} ${DOCKER_IMAGE} 
 else
 	docker run \
-		-v ${HOST_WORKDIR}:/root/ev3rt-athrill-v850e2m/sdk/src \
+		-v ${HOST_WORKDIR}:${DOCKER_DIR} \
+		-v `pwd`/hakoniwa-core-cpp-client:${DOCKER_DIR}/hakoniwa-core-cpp-client \
+		-v `pwd`/hakoniwa-master-rust:${DOCKER_DIR}/hakoniwa-master-rust \
 		-it --rm \
 		--net host \
 		-e CORE_IPADDR=${IPADDR} \
