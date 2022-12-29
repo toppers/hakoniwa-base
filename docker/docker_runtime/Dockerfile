@@ -79,5 +79,4 @@ RUN apt-get install -y libc++-dev libc++abi-dev
 
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
-CMD ["/root/workspace/install.bash"]
 
