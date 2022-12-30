@@ -52,6 +52,18 @@
 git clone --recursive https://github.com/toppers/hakoniwa-develop.git
 ```
 
+## 用途に応じたシミュレーション環境のパラメータ設定
+
+`2022/12/31` 時点では、未対応です。
+
+用途に応じたパラメータを json 形式で設定する予定です。
+
+## Dockerファイルの生成
+
+`2022/12/31` 時点では、未対応です。
+
+設定したパラメータファイルから、開発環境と実行環境のDockerfileを自動生成する予定です。
+
 ## 開発環境のインストール
 
 まず、開発環境用のdockerイメージを作成します。
@@ -61,7 +73,7 @@ cd hakoniwa-develop
 bash docker/create-image.bash dev
 ```
 
-次に、docker コンテナを起動し、インストールコマンドを実行します(将来的にはここも自動化予定)。
+docker コンテナを起動し、インストールコマンドを実行します(将来的にはここも自動化予定)。
 
 ```
 bash docker/run.bash dev
@@ -76,12 +88,37 @@ bash install.bash
 cd hakoniwa-develop
 bash docker/create-image.bash runtime
 ```
-次に、docker コンテナを起動し、インストールコマンドを実行します(将来的にはここも自動化予定)。
+
+docker コンテナを起動し、インストールコマンドを実行します(将来的にはここも自動化予定)。
 
 ```
 bash docker/run.bash dev
 bash install.bash
 ```
+
+# 開発環境のフォルダ構成とビルド方法
+
+開発対象とする制御アプリケーションは、`workspace/dev/src` 直下に開発アプリのディレクトリを作成し、ファイル配置する形になります。
+
+```
+workspace/dev
+└── src
+    ├── [開発アプリディレクトリ]
+    :     :
+    ├── build.bash
+    └── install.bash
+```
+
+開発環境のdockerコンテナを起動すると、`workspace/dev/src` がカレントディレクトリとなります。
+
+アプリケーションのビルド方法は、開発環境のコンテナ内で、以下のコマンドを実行するだけです。
+
+```
+bash build.bash [開発アプリディレクトリ]
+```
+
+生成された実行バイナリは、ローカルホスト上のファイルとして生成されます。
+EV3RTの場合は、[開発アプリディレクトリ]配下に、`asp` ファイルが作成されます。
 
 
 # 技術背景
