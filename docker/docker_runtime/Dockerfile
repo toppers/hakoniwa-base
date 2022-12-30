@@ -58,6 +58,7 @@ RUN mkdir /usr/local/bin/hakoniwa
 RUN apt-get install -y protobuf-compiler
 RUN apt-get install -y build-essential
 
+
 ENV RUST_HOME /usr/local/lib/rust
 ENV RUSTUP_HOME ${RUST_HOME}/rustup
 ENV CARGO_HOME ${RUST_HOME}/cargo
@@ -70,11 +71,11 @@ ENV PATH $PATH:$CARGO_HOME/bin
 
 RUN apt-get install -y libc++-dev libc++abi-dev
 
-RUN mkdir -p /root/workspace
-WORKDIR /root/workspace
-
 WORKDIR /root
 RUN git clone --recursive https://github.com/toppers/athrill-device.git
+
+
+RUN mkdir -p /root/workspace
 
 WORKDIR /root/athrill-device/device/hakotime
 RUN bash build.bash

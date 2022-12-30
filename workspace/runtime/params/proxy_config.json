@@ -11,5 +11,12 @@
         "-m",
         "/root/workspace/params/memory.txt",
         "/root/workspace/dev/asp"
+    ],
+    "target_channels": [
+	    {
+		    "channel_id": 0,
+		    "size": 1024
+	    }
     ]
 }
+

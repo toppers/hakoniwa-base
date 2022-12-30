@@ -9,7 +9,7 @@
 #include "ev3api.h"
 #include "app.h"
 
-//#define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
 #define _debug(x) (x)
@@ -79,7 +79,7 @@ static void check_color_sensor(void)
         default:
             break;
     }
-    _debug(syslog(LOG_NOTICE, "color=%s reflect_value=%d", color_str, value));
+    syslog(LOG_NOTICE, "color=%s reflect_value=%d", color_str, value);
     return;
 }
 /*
@@ -324,26 +324,31 @@ void main_task(intptr_t unused) {
     ev3_motor_stop(right_motor, true);
     while(1) {
 #if 0
+    check_color_sensor();
         /*
          * ここに制御プログラムを入れてください
          */
         if (count <= 100) {
-           ev3_motor_set_power(left_motor, 3);
-           ev3_motor_set_power(right_motor, 3);
+    syslog(LOG_NOTICE, "STEP FOWARD: count=%d", count);
+           ev3_motor_set_power(left_motor, 20);
+           ev3_motor_set_power(right_motor, 20);
         }
         else if ((count > 100) && (count <= 200)) {
-           ev3_motor_set_power(left_motor, -3);
-           ev3_motor_set_power(right_motor, -3);
+    syslog(LOG_NOTICE, "STEP BACKWORD: count=%d", count);
+           ev3_motor_set_power(left_motor, -20);
+           ev3_motor_set_power(right_motor, -20);
         }
         else if ((count > 200) && (count <= 300)) {
+    syslog(LOG_NOTICE, "STEP 3: count=%d", count);
            ev3_motor_set_power(left_motor, 0);
            ev3_motor_set_power(right_motor, 0);
-           ev3_motor_set_power(arm_motor, 1);
+           ev3_motor_set_power(arm_motor, 3);
         }
         else if ((count > 300) && (count <= 400)) {
+    syslog(LOG_NOTICE, "STEP 4: count=%d", count);
            ev3_motor_set_power(left_motor, 0);
            ev3_motor_set_power(right_motor, 0);
-           ev3_motor_set_power(arm_motor, -1);
+           ev3_motor_set_power(arm_motor, -3);
         }
         else {
             /* nothing to do */
@@ -354,6 +359,6 @@ void main_task(intptr_t unused) {
     do_arm_move(false);
     do_practice_2();
 #endif
-        tslp_tsk(100000); /* 100msec */
+        tslp_tsk(100000); /* 10msec */
     }
 }
