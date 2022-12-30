@@ -103,7 +103,72 @@ bash docker/create-image.bash runtime
 
 ## Unity環境のセットアップ
 
-TODO
+### インストール
+
+まず、以下のリポジトリをクローンします。
+
+```
+git clone --recursive https://github.com/toppers/hakoniwa-ros2sim.git
+```
+
+次に、ブランチを`unity-asset`に切り替えます。
+
+```
+git checkout unity-asset
+```
+
+docker コンテナを起動します。
+
+```
+ bash docker/run.bash 
+```
+
+もろもろインストールします。
+
+```
+ bash hako-install.bash opt all
+```
+
+[こちらの手順](https://github.com/toppers/hakoniwa-ros2sim/blob/main/README_jp.md#unity-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E9%96%8B%E3%81%8F)で、Unity プロジェクトを開いてください。
+
+### ロボットの配置
+
+箱庭コンフィギュレータを起動すると、下図のようにTB3が見えます。
+
+![image](https://user-images.githubusercontent.com/164193/210113179-b29d8df1-a490-4217-b011-f36075aa4a42.png)
+
+
+今回は、HackEVモデルを利用したいので、TB3は削除して、HackEVを配置します。
+
+まず、TB3を以下の要領で削除します。
+
+![image](https://user-images.githubusercontent.com/164193/210113222-e9b24d99-7898-43b5-aed0-36954413207d.png)
+
+箱庭のロボットアセットを開き、HackEVモデルを選択します。
+
+![image](https://user-images.githubusercontent.com/164193/210113272-cb46072a-c5ed-4ca2-aa91-a7460369b020.png)
+
+ドラッグ＆ドロップで、「Robot」直下に配置しましょう。
+
+![image](https://user-images.githubusercontent.com/164193/210113323-80dda1d3-340c-49cd-a3e9-79691e9c605d.png)
+
+最後に、この情報をコンフィグファイルとして生成します。
+
+![image](https://user-images.githubusercontent.com/164193/210113357-2a679abc-d87d-4126-8ba0-96341b93c7be.png)
+
+生成完了したら、再度、もろもろインストールします。
+
+```
+ bash hako-install.bash opt all
+```
+
+
+### コンフィグパラメータの変更
+
+
+
+
+
 
 # 開発環境のディレクトリ構成とビルド方法
 
