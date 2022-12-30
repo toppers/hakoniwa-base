@@ -304,6 +304,28 @@ bash docker/run.bash runtime
 TODO 成功時のログを追記。
 
 
+## Unityのシミュレーション実行
+
+Unityエディタ上で、シーンを`Toppers_Course`に切り替えます。
+
+![image](https://user-images.githubusercontent.com/164193/210114913-ef502c0b-3b17-4afb-a402-e9010451edab.png)
+
+シミュレーション開始ボタンを押下します。
+
+![image](https://user-images.githubusercontent.com/164193/210114921-68828af6-8a97-42fc-bfc8-b3af3b5a6ddb.png)
+
+シミュレーション実行待ち状態になります。
+
+![image](https://user-images.githubusercontent.com/164193/210114954-f864725a-13c5-47f7-9d9d-be1767ffec1b.png)
+
+「開始」ボタンを押下すると、動き出します。
+
+動作例：
+https://user-images.githubusercontent.com/164193/210114879-5059d95a-b8d7-453f-bd1c-0c334e84410d.mp4
+
+
+
+
 # 技術背景
 
 TODO
