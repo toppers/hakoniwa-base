@@ -67,10 +67,10 @@ git clone --recursive https://github.com/toppers/hakoniwa-develop.git
 現状は、以下のファイルのパラメータを手動で設定してください。``
 
 * docker/docker_runtime/env.bash
- * ETHER
-  * 利用しているイーサーネット名(ifconfigコマンド確認できます)
- * CORE_IPADDR
-  * 上記のIPアドレス
+  * ETHER
+    * 利用しているイーサーネット名(ifconfigコマンド確認できます)
+  * CORE_IPADDR
+    * 上記のIPアドレス
 
 設定例は、以下の通りです。
 
@@ -101,14 +101,7 @@ cd hakoniwa-develop
 bash docker/create-image.bash runtime
 ```
 
-docker コンテナを起動し、インストールコマンドを実行します(将来的にはここも自動化予定)。
-
-```
-bash docker/run.bash dev
-bash install.bash
-```
-
-# 開発環境のフォルダ構成とビルド方法
+# 開発環境のディレクトリ構成とビルド方法
 
 開発対象とする制御アプリケーションは、`workspace/dev/src` 直下に開発アプリのディレクトリを作成し、ファイル配置する形になります。
 
@@ -135,7 +128,41 @@ EV3RTの場合は、[開発アプリディレクトリ]配下に、`asp` ファ�
 
 # シミュレーション実行手順
 
-* 
+開発環境と同様に、実行環境もローカルホスト上に、シミュレーション実行に必要なファイル群を保存する構成です。
+
+ディレクトリ構成は以下の通りです。
+
+```
+workspace/runtime
+├── hakoniwa-core-cpp-client
+├── hakoniwa-master-rust
+├── install.bash
+├── asset_env.bash
+├── dev
+├── params
+│   ├── device_config.txt
+│   ├── memory.txt
+│   └── proxy_config.json
+├── run-[アセット名]
+└── run.bash
+```
+
+## 実行バイナリの配置
+
+ホスト上で、開発環境で作成したバイナリファイルを`workspace/runtime/dev/`直下に配置してください。
+
+例：
+
+```
+cp workspace/dev/src/[開発アプリディレクトリ]/asp workspace/runtime/dev/asp
+```
+## 実行環境の起動
+
+docker コンテナを起動するだけです。
+
+```
+bash docker/run.bash runtime
+```
 
 
 # 技術背景
