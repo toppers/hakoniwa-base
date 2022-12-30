@@ -62,7 +62,19 @@ git clone --recursive https://github.com/toppers/hakoniwa-develop.git
 
 `2022/12/31` 時点では、未対応です。
 
-設定したパラメータファイルから、開発環境と実行環境のDockerfileを自動生成する予定です。
+設定したパラメータファイルから、開発環境と実行環境のDockerfileおよび環境変数群を自動生成する予定です。
+
+現状は、以下のファイルのパラメータを手動で設定してください。``
+
+* docker/docker_runtime/env.bash
+ * ETHER
+  * 利用しているイーサーネット名(ifconfigコマンド確認できます)
+ * CORE_IPADDR
+  * 上記のIPアドレス
+
+設定例は、以下の通りです。
+
+https://github.com/toppers/hakoniwa-develop/blob/b2b0e4f6ba8ca3aea073a6c3f663782d47513229/docker/docker_runtime/env.bash#L9-L10
 
 ## 開発環境のインストール
 
@@ -118,7 +130,12 @@ bash build.bash [開発アプリディレクトリ]
 ```
 
 生成された実行バイナリは、ローカルホスト上のファイルとして生成されます。
+
 EV3RTの場合は、[開発アプリディレクトリ]配下に、`asp` ファイルが作成されます。
+
+# シミュレーション実行手順
+
+* 
 
 
 # 技術背景
