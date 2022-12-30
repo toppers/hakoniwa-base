@@ -87,3 +87,5 @@ RUN cp /root/athrill-device/device/hakotime/cmake-build/libhakotime.* /usr/local
 RUN cp /root/athrill-device/device/hakopdu/cmake-build/libhakopdu.* /usr/local/lib/hakoniwa/
 
 WORKDIR /root/workspace
+
+CMD [ "/root/workspace/run.bash" ]

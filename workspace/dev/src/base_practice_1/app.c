@@ -38,7 +38,7 @@ do {    \
  */
 static void do_foward(int power)
 {
-    ER err = ev3_motor_steer(left_motor, right_motor, power, 0);
+    ER err = ev3_motor_steer(left_motor, right_motor, 4*power, 0);
     ERR_CHECK(err);
     return;
 }
@@ -89,7 +89,7 @@ int16_t ultrasonic_value = 0;
 static void check_ultrasonic_sensor(void)
 {
     ultrasonic_value = ev3_ultrasonic_sensor_get_distance(ultrasonic_sensor);
-    _debug(syslog(LOG_NOTICE, "ultrasonic_value=%d", ultrasonic_value));
+    syslog(LOG_NOTICE, "ultrasonic_value=%d", ultrasonic_value);
     return;
 }
 /*
@@ -136,7 +136,7 @@ static void do_arm_move(bool_t up)
 static void do_turn(int turn_speed)
 {
     if (turn_speed > 0) {
-        ER err = ev3_motor_set_power(left_motor, turn_speed);
+        ER err = ev3_motor_set_power(left_motor, turn_speed * 3);
         ERR_CHECK(err);
         err = ev3_motor_set_power(right_motor, 0);
         ERR_CHECK(err);
@@ -144,7 +144,7 @@ static void do_turn(int turn_speed)
     else {
         ER err = ev3_motor_set_power(left_motor, 0);
         ERR_CHECK(err);
-        err = ev3_motor_set_power(right_motor, -turn_speed);
+        err = ev3_motor_set_power(right_motor, -turn_speed * 3);
         ERR_CHECK(err);
     }
     return;
@@ -196,7 +196,7 @@ static void do_practice_2_second(void)
 {
     check_ultrasonic_sensor();
     check_color_sensor();
-    if (ultrasonic_value > 5) {
+    if (ultrasonic_value > 20) {
         do_foward(5);
         return;
     }
@@ -214,7 +214,7 @@ static void do_practice_2_second(void)
 static void do_practice_2_third(void)
 {
     check_ultrasonic_sensor();
-    if (ultrasonic_value < 12) {
+    if (ultrasonic_value < 17) {
         do_turn(5);
         return;
     }
@@ -244,7 +244,7 @@ static void do_practice_2_Fourth(void)
 static void do_practice_2_Fifh(void)
 {
     check_ultrasonic_sensor();
-    if (ultrasonic_value < 5) {
+    if (ultrasonic_value < 15) {
         do_stop();
         syslog(LOG_NOTICE, "GOAL!!");
         Practice2_Phase = Practice2_Phase_Sixth;
@@ -359,6 +359,6 @@ void main_task(intptr_t unused) {
     do_arm_move(false);
     do_practice_2();
 #endif
-        tslp_tsk(100000); /* 10msec */
+        tslp_tsk(20000); /* 20msec */
     }
 }
