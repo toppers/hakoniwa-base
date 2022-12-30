@@ -101,6 +101,10 @@ cd hakoniwa-develop
 bash docker/create-image.bash runtime
 ```
 
+## Unity環境のセットアップ
+
+TODO
+
 # 開発環境のディレクトリ構成とビルド方法
 
 開発対象とする制御アプリケーションは、`workspace/dev/src` 直下に開発アプリのディレクトリを作成し、ファイル配置する形になります。
@@ -163,6 +167,11 @@ docker コンテナを起動するだけです。
 ```
 bash docker/run.bash runtime
 ```
+
+成功すると、[Rust版箱庭マスタ](https://github.com/toppers/hakoniwa-master-rust)と[箱庭プロキシ](https://github.com/toppers/hakoniwa-core-cpp-client/blob/3070fed43c9534f1a6209798b24510750ad63783/src/proxy/src/hako_proxy.cpp)が起動します。
+
+
+TODO 成功時のログを追記。
 
 
 # 技術背景
