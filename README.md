@@ -321,6 +321,7 @@ Unityエディタ上で、シーンを`Toppers_Course`に切り替えます。
 「開始」ボタンを押下すると、動き出します。
 
 動作例：
+
 https://user-images.githubusercontent.com/164193/210114879-5059d95a-b8d7-453f-bd1c-0c334e84410d.mp4
 
 
