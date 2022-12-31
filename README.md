@@ -212,6 +212,7 @@ docker コンテナを起動します。
 
 * core_ipaddr
   * シミュレーション実行用のdockerコンテナのIPアドレス
+    * wsl2 の場合は、eth0 の IPアドレス
 * cpp_mode
   * asset_rpc
     * 箱庭マスタ機能と gRPC で連携するモードです。
@@ -221,6 +222,7 @@ docker コンテナを起動します。
     * 任意の名前でよいですが、20文字以内。
 * asset_ipaddr
    * Unity配置PCのIPアドレス
+     * wsl2 の場合は、/etc/resolve.conf の IPアドレス
 * pdu_udp_portno_asset
    * 箱庭マスタ側から、PDUデータ受信するUDPポート番号
    * こだわりなければ、54003
