@@ -260,30 +260,50 @@ EV3RTの場合は、[開発アプリディレクトリ]配下に、`asp` ファ�
 
 ディレクトリ構成は以下の通りです。
 
+
 ```
-workspace/runtime
+workspace/runtime/
+├── asset_def.txt
+├── asset_env.bash
 ├── hakoniwa-core-cpp-client
 ├── hakoniwa-master-rust
 ├── install.bash
-├── asset_env.bash
-├── dev
 ├── params
-│   ├── device_config.txt
-│   ├── memory.txt
-│   └── proxy_config.json
-├── run-[アセット名]
+│   ├── base_practice_1-1
+│   │   ├── device_config.txt
+│   │   ├── memory.txt
+│   │   └── proxy_config.json
+│   ├── block_signal-1
+│   │   ├── device_config.txt
+│   │   ├── memory.txt
+│   │   └── proxy_config.json
+│   └── train_slow_stop-1
+│       ├── device_config.txt
+│       ├── memory.txt
+│       └── proxy_config.json
+├── run
+│   ├── base_practice_1-1
+│   ├── block_signal-1
+│   │   └── log.txt
+│   └── train_slow_stop-1
+│       └── log.txt
 └── run.bash
 ```
 
-## 実行バイナリの配置
+シミュレーション実行対象となるアセットは ``asset_def.txt` に記述します。
 
-ホスト上で、開発環境で作成したバイナリファイルを`workspace/runtime/dev/`直下に配置してください。
+```
+<開発アプリディレクトリ名>:<ID>
+　：
+```
 
 例：
 
 ```
-cp workspace/dev/src/[開発アプリディレクトリ]/asp workspace/runtime/dev/asp
+block_signal:1
+train_slow_stop:1
 ```
+
 ## 実行環境の起動
 
 docker コンテナを起動するだけです。
@@ -295,7 +315,45 @@ bash docker/run.bash runtime
 成功すると、[Rust版箱庭マスタ](https://github.com/toppers/hakoniwa-master-rust)と[箱庭プロキシ](https://github.com/toppers/hakoniwa-core-cpp-client/blob/3070fed43c9534f1a6209798b24510750ad63783/src/proxy/src/hako_proxy.cpp)が起動します。
 
 
-TODO 成功時のログを追記。
+```
+$ bash docker/run.bash runtime
+install.bash: line 33: create_env: command not found
+INFO: ACTIVATING HAKO-MASTER
+INFO: ACTIVATING ASSET-PROXY
+OPEN RECIEVER UDP PORT=172.26.214.23:54001
+OPEN SENDER UDP PORT=172.26.214.23:54002
+delta_msec = 20
+max_delay_msec = 100
+INFO: shmget() key=255 size=12160 
+Server Start: 172.26.214.23:50051
+INFO: START block_signal-1
+add_option:/root/athrill-target-v850e2m/athrill/bin/linux/athrill2
+add_option:-c1
+add_option:-t
+add_option:-1
+add_option:-d
+add_option:/root/workspace/params/block_signal-1/device_config.txt
+add_option:-m
+add_option:/root/workspace/params/block_signal-1/memory.txt
+add_option:/root/workspace/dev/block_signal/asp
+INFO: PROXY start
+target_channels: 0 target_channels: 1024
+create_channel: id=2 size=1024
+INFO: START train_slow_stop-1
+INFO: SIMULATION READY!
+add_option:/root/athrill-target-v850e2m/athrill/bin/linux/athrill2
+add_option:-c1
+add_option:-t
+add_option:-1
+add_option:-d
+add_option:/root/workspace/params/train_slow_stop-1/device_config.txt
+add_option:-m
+add_option:/root/workspace/params/train_slow_stop-1/memory.txt
+add_option:/root/workspace/dev/train_slow_stop/asp
+INFO: PROXY start
+target_channels: 0 target_channels: 1024
+create_channel: id=0 size=1024
+```
 
 
 ## Unityのシミュレーション実行
