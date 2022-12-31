@@ -85,13 +85,6 @@ cd hakoniwa-develop
 bash docker/create-image.bash dev
 ```
 
-docker コンテナを起動し、インストールコマンドを実行します(将来的にはここも自動化予定)。
-
-```
-bash docker/run.bash dev
-bash install.bash
-```
-
 ## 実行環境
 
 次に、実行環境のdockerイメージを作成します。
@@ -250,12 +243,11 @@ workspace/dev
     └── install.bash
 ```
 
-開発環境のdockerコンテナを起動すると、`workspace/dev/src` がカレントディレクトリとなります。
-
-アプリケーションのビルド方法は、開発環境のコンテナ内で、以下のコマンドを実行するだけです。
+開発環境でのビルドは、dockerコンテナ上で行います。
+アプリケーションのビルド方法は、以下のコマンドを実行するだけです。
 
 ```
-bash build.bash [開発アプリディレクトリ]
+bash docker/build.bash [開発アプリディレクトリ名]
 ```
 
 生成された実行バイナリは、ローカルホスト上のファイルとして生成されます。
