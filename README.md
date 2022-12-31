@@ -317,7 +317,6 @@ bash docker/run.bash runtime
 
 ```
 $ bash docker/run.bash runtime
-install.bash: line 33: create_env: command not found
 INFO: ACTIVATING HAKO-MASTER
 INFO: ACTIVATING ASSET-PROXY
 OPEN RECIEVER UDP PORT=172.26.214.23:54001
