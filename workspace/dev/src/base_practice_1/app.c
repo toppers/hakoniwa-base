@@ -9,7 +9,7 @@
 #include "ev3api.h"
 #include "app.h"
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 #define _debug(x) (x)
