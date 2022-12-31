@@ -56,3 +56,5 @@ RUN git clone --depth 1 https://github.com/toppers/athrill.git && \
 
 WORKDIR /root/ev3rt-athrill-v850e2m/sdk/src
 ENV RUBYOPT -EUTF-8
+
+CMD [ "/root/ev3rt-athrill-v850e2m/sdk/src/build.bash" ]
