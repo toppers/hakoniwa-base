@@ -88,4 +88,4 @@ RUN cp /root/athrill-device/device/hakopdu/cmake-build/libhakopdu.* /usr/local/l
 
 WORKDIR /root/workspace
 
-#CMD [ "/root/workspace/run.bash" ]
+CMD [ "/root/workspace/run.bash" ]
