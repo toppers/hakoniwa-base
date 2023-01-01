@@ -1,0 +1,22 @@
+{
+    "asset_name": "athrill-base_practice_1-1",
+    "target_exec_dir": "/root/workspace/run/base_practice_1-1",
+    "target_bin_path": "/root/athrill-target-v850e2m/athrill/bin/linux/athrill2",
+    "target_options": [
+        "-c1",
+        "-t",
+        "-1",
+        "-d",
+        "/root/workspace/params/base_practice_1-1/device_config.txt",
+        "-m",
+        "/root/workspace/params/base_practice_1-1/memory.txt",
+        "/root/workspace/dev/base_practice_1/asp"
+    ],
+    "target_channels": [
+	    {
+		    "channel_id": 0,
+		    "size": 1024
+	    }
+    ]
+}
+

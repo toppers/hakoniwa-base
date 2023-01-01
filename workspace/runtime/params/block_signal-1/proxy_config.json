@@ -1,0 +1,22 @@
+{
+    "asset_name": "athrill-block_signal-1",
+    "target_exec_dir": "/root/workspace/run/block_signal-1",
+    "target_bin_path": "/root/athrill-target-v850e2m/athrill/bin/linux/athrill2",
+    "target_options": [
+        "-c1",
+        "-t",
+        "-1",
+        "-d",
+        "/root/workspace/params/block_signal-1/device_config.txt",
+        "-m",
+        "/root/workspace/params/block_signal-1/memory.txt",
+        "/root/workspace/dev/block_signal/asp"
+    ],
+    "target_channels": [
+	    {
+		    "channel_id": 2,
+		    "size": 1024
+	    }
+    ]
+}
+
