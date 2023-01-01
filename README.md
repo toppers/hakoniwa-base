@@ -300,7 +300,10 @@ Unityエディタ上で、シーンを`Toppers_Course`に切り替えます。
 
 動作例：
 
-https://user-images.githubusercontent.com/164193/210114879-5059d95a-b8d7-453f-bd1c-0c334e84410d.mp4
+
+
+https://user-images.githubusercontent.com/164193/210167332-f685d856-a19b-4471-944f-7f9f03bb1e47.mp4
+
 
 
 
