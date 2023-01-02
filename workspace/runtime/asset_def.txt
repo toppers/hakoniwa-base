@@ -1,2 +1,1 @@
-block_signal:1
-train_slow_stop:1
+transporter:1
