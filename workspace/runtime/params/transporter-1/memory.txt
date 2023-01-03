@@ -1,0 +1,7 @@
+ROM, 0x00000000, 2048
+RAM, 0x00200000, 2048
+RAM, 0x03FF7000, 1024
+RAM, 0x05FF7000, 10240
+RAM, 0x07FF7000, 10240
+DEV,  0x090F0000, /usr/local/lib/hakoniwa/libhakopdu.so
+DEV,  0x900F0000, /usr/local/lib/hakoniwa/libhakotime.so

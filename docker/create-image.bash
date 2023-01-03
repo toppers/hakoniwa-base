@@ -12,3 +12,7 @@ DOCKER_IMAGE=toppersjp/${IMAGE_NAME}:${IMAGE_TAG}
 DOCKER_FILE=docker/docker_${TYPE}/Dockerfile
 docker build -t ${DOCKER_IMAGE} -f ${DOCKER_FILE} .
 
+if [ $TYPE = "dev" ]
+then
+    chmod +x workspace/dev/src/build.bash
+fi

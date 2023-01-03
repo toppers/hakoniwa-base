@@ -64,18 +64,6 @@ git clone --recursive https://github.com/toppers/hakoniwa-develop.git
 
 設定したパラメータファイルから、開発環境と実行環境のDockerfileおよび環境変数群を自動生成する予定です。
 
-現状は、以下のファイルのパラメータを手動で設定してください。``
-
-* docker/docker_runtime/env.bash
-  * ETHER
-    * 利用しているイーサーネット名(ifconfigコマンド確認できます)
-  * CORE_IPADDR
-    * 上記のIPアドレス
-
-設定例は、以下の通りです。
-
-https://github.com/toppers/hakoniwa-develop/blob/b2b0e4f6ba8ca3aea073a6c3f663782d47513229/docker/docker_runtime/env.bash#L9-L10
-
 ## 開発環境のインストール
 
 まず、開発環境用のdockerイメージを作成します。
