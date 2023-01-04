@@ -219,6 +219,22 @@ block_signal:1
 train_slow_stop:1
 ```
 
+ところで、複数のathrillを同時に起動すると、コンソールログが重複して大変なことになります。
+そのような場合に備えて、Athrillのログを特定の場所に吐き出すコンフィグ設定が可能です。
+
+```
+<開発アプリディレクトリ名>:<ID>:<ログ出力ファイルパス>
+　：
+```
+
+例：
+
+```
+block_signal:1:root/workspace/run/block_signal-1/debug.txt
+train_slow_stop:1:root/workspace/run/train_slow_stop-1/debug.txt
+```
+
+
 ## 実行環境の起動
 
 docker コンテナを起動するだけです。
