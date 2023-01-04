@@ -39,8 +39,9 @@ then
 		echo "Usage: $0 <port>"
 		exit 1
 	fi
-	NETWORK_INTERFACE=$(route | grep '^default' | grep -o '[^ ]*$' | tr -d '\n')
-	CORE_IPADDR=$(ifconfig "${NETWORK_INTERFACE}" | grep netmask | awk '{print $2}')
+	#NETWORK_INTERFACE=$(netstat -rnf inet | grep '^default' | awk '{print $4}')
+	#CORE_IPADDR=$(ifconfig "${NETWORK_INTERFACE}" | grep netmask | awk '{print $2}')
+	CORE_IPADDR="127.0.0.1"
 else
 	IPADDR="127.0.0.1"
 fi

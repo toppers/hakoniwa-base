@@ -17,9 +17,15 @@ do
     sleep 1
     TYPE_NAME=`echo $info | awk -F: '{print $1}'`
     ID=`echo $info | awk -F: '{print $2}'`
+    LOG=`echo $info | awk -F: '{print $3}'`
     ASSET_NAME=${TYPE_NAME}-${ID}
     echo "INFO: START ${ASSET_NAME}"
-    hako-proxy ./params/${ASSET_NAME}/proxy_config.json &
+    if [ "${LOG}" = "" ]
+    then
+        hako-proxy ./params/${ASSET_NAME}/proxy_config.json &
+    else
+        hako-proxy ./params/${ASSET_NAME}/proxy_config.json > ${LOG} &
+    fi
 done
 
 echo "INFO: SIMULATION READY!"
