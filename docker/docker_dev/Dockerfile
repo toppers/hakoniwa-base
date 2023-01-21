@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as hakoniwa-single_robot-dev
+FROM ubuntu:20.04 as hakoniwa-single_robot-dev
 
 ARG DEBIAN_FRONTEND=noninteractive
 

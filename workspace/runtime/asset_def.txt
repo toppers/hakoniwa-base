@@ -1,1 +1,1 @@
-transporter:1:/root/workspace/run/transporter-1/debug.txt
+base_practice_1:1
