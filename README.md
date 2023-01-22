@@ -49,7 +49,7 @@
 # インストール手順
 
 ```
-git clone --recursive https://github.com/toppers/hakoniwa-develop.git
+git clone --recursive https://github.com/toppers/hakoniwa-base.git
 ```
 
 ## 用途に応じたシミュレーション環境のパラメータ設定
