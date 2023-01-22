@@ -69,7 +69,7 @@ git clone --recursive https://github.com/toppers/hakoniwa-base.git
 まず、開発環境用のdockerイメージを作成します。
 
 ```
-cd hakoniwa-develop
+cd hakoniwa-base
 bash docker/create-image.bash dev
 ```
 
@@ -78,7 +78,7 @@ bash docker/create-image.bash dev
 次に、実行環境のdockerイメージを作成します。
 
 ```
-cd hakoniwa-develop
+cd hakoniwa-base
 bash docker/create-image.bash runtime
 ```
 
