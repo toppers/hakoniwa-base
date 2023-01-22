@@ -27,7 +27,7 @@
 
 現時点で検討中のパラメータは、こちらです。
 
-* https://github.com/toppers/hakoniwa-develop/blob/main/params/ev3rt-one-instance.json
+* https://github.com/toppers/hakoniwa-base/blob/main/params/ev3rt-one-instance.json
 
 今後、ブラッシュアップしながら、成長させていく予定です。
 
