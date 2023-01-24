@@ -5,7 +5,7 @@ HAKO_BIN_DIR=/usr/local/bin/hakoniwa
 CURR_DIR=`pwd`
 if [ -f hakoniwa-core-cpp-client/cmake-build/src/proxy/hako-proxy ]
 then
-    cd hakoniwa-master-rust/main
+    cd hakoniwa-conductor/main
     cp ../../hakoniwa-core-cpp-client/cmake-build/src/hakoc/libshakoc.* ${HAKO_LIB_DIR}
     cp ../../hakoniwa-core-cpp-client/cmake-build/src/proxy/hako-proxy ${HAKO_BIN_DIR}/
     cp ../../hakoniwa-core-cpp-client/cmake-build/core/sample/base-procs/hako-cmd/hako-cmd ${HAKO_BIN_DIR}/
@@ -20,7 +20,7 @@ else
 
 
     cd ${CURR_DIR}
-    cd hakoniwa-master-rust/main
+    cd hakoniwa-conductor/main
     cp ../../hakoniwa-core-cpp-client/cmake-build/src/hakoc/libshakoc.* ${HAKO_LIB_DIR}/
     cp ../../hakoniwa-core-cpp-client/cmake-build/src/proxy/hako-proxy ${HAKO_BIN_DIR}/
     cp ../../hakoniwa-core-cpp-client/cmake-build/core/sample/base-procs/hako-cmd/hako-cmd ${HAKO_BIN_DIR}/

@@ -181,7 +181,7 @@ workspace/runtime/
 ├── asset_def.txt
 ├── asset_env.bash
 ├── hakoniwa-core-cpp-client
-├── hakoniwa-master-rust
+├── hakoniwa-conductor
 ├── install.bash
 ├── params
 │   ├── base_practice_1-1
@@ -243,7 +243,7 @@ docker コンテナを起動するだけです。
 bash docker/run.bash runtime
 ```
 
-成功すると、[Rust版箱庭マスタ](https://github.com/toppers/hakoniwa-master-rust)と[箱庭プロキシ](https://github.com/toppers/hakoniwa-core-cpp-client/blob/3070fed43c9534f1a6209798b24510750ad63783/src/proxy/src/hako_proxy.cpp)が起動します。
+成功すると、[Rust版箱庭マスタ](https://github.com/toppers/hakoniwa-conductor)と[箱庭プロキシ](https://github.com/toppers/hakoniwa-core-cpp-client/blob/3070fed43c9534f1a6209798b24510750ad63783/src/proxy/src/hako_proxy.cpp)が起動します。
 
 
 ```
