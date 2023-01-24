@@ -59,7 +59,7 @@ else
 		-v ${HOST_DEVDIR}:${DOCKER_DEVDIR} \
 		-v ${HOST_WORKDIR}:${DOCKER_DIR} \
 		-v `pwd`/hakoniwa-core-cpp-client:${DOCKER_DIR}/hakoniwa-core-cpp-client \
-		-v `pwd`/hakoniwa-master-rust:${DOCKER_DIR}/hakoniwa-master-rust \
+		-v `pwd`/hakoniwa-conductor:${DOCKER_DIR}/hakoniwa-conductor \
 		-it --rm \
 		--net host \
 		-e CORE_IPADDR=${CORE_IPADDR} \
