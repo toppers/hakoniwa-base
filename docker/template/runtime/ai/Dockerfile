@@ -56,12 +56,17 @@ RUN apt-get install -y libc++-dev libc++abi-dev
 WORKDIR /root
 RUN git clone --recursive https://github.com/toppers/hakoniwa-core-cpp-client.git
 WORKDIR /root/hakoniwa-core-cpp-client
+RUN apt-get install -y python3-pip  libffi-dev python3-dev
 RUN bash build.bash
-RUN cp cmake-build/src/hakoc/libshakoc.* /usr/local/bin/hakoniwa/
+RUN cp cmake-build/src/hakoc/libshakoc.* /usr/local/lib/hakoniwa/
+RUN cp cmake-build/src/hakoc/libshakoc.so /usr/local/lib/hakoniwa/hakoc.so
+RUN mkdir /usr/local/lib/hakoniwa/binary
+RUN cp -rp py/binary/offset /usr/local/lib/hakoniwa/binary/
 RUN cp cmake-build/src/proxy/hako-proxy /usr/local/bin/hakoniwa
 RUN cp cmake-build/core/sample/base-procs/hako-cmd/hako-cmd /usr/local/bin/hakoniwa
 
-RUN https://github.com/toppers/hakoniwa-conductor.git
+WORKDIR /root
+RUN git clone --recursive https://github.com/toppers/hakoniwa-conductor.git
 WORKDIR /root/hakoniwa-conductor/main
 RUN bash install.bash
 
