@@ -10,7 +10,7 @@
         "/root/workspace/params/train_slow_stop-1/device_config.txt",
         "-m",
         "/root/workspace/params/train_slow_stop-1/memory.txt",
-        "/root/workspace/dev/train_slow_stop/asp"
+        "/root/workspace/dev/src/train_slow_stop/asp"
     ],
     "target_channels": [
 	    {

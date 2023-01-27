@@ -10,7 +10,7 @@
         "/root/workspace/params/block_signal-1/device_config.txt",
         "-m",
         "/root/workspace/params/block_signal-1/memory.txt",
-        "/root/workspace/dev/block_signal/asp"
+        "/root/workspace/dev/src/block_signal/asp"
     ],
     "target_channels": [
 	    {
