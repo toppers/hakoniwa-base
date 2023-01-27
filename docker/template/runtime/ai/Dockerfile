@@ -60,8 +60,8 @@ RUN apt-get install -y python3-pip  libffi-dev python3-dev
 RUN bash build.bash
 RUN cp cmake-build/src/hakoc/libshakoc.* /usr/local/lib/hakoniwa/
 RUN cp cmake-build/src/hakoc/libshakoc.so /usr/local/lib/hakoniwa/hakoc.so
-RUN mkdir /usr/local/lib/hakoniwa/binary
-RUN cp -rp py/binary/offset /usr/local/lib/hakoniwa/binary/
+RUN cp -rp py /usr/local/lib/hakoniwa/
+ENV PYTHONPATH="/usr/local/lib/hakoniwa/py:$PYTHONPATH"
 RUN cp cmake-build/src/proxy/hako-proxy /usr/local/bin/hakoniwa
 RUN cp cmake-build/core/sample/base-procs/hako-cmd/hako-cmd /usr/local/bin/hakoniwa
 
@@ -74,6 +74,7 @@ RUN bash install.bash
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
 
-
+ENV PYTHONPATH="/usr/local/lib/hakoniwa:$PYTHONPATH"
+RUN pip3 install numpy
 
 #CMD [ "/root/workspace/run.bash" ]

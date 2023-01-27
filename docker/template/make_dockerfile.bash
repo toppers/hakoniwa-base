@@ -24,5 +24,10 @@ fi
 cp docker/template/${TYPE}/${APP_TYPE}/${TYPE}_latest_version.txt docker/appendix/
 cp docker/template/${TYPE}/${APP_TYPE}/image_name.txt docker/docker_${TYPE}/
 cp docker/template/${TYPE}/${APP_TYPE}/Dockerfile docker/docker_${TYPE}/
-
+if [ $TYPE = "dev" ]
+then
+    cp docker/template/${TYPE}/${APP_TYPE}/workspace/* workspace/dev/src/
+else
+    cp docker/template/${TYPE}/${APP_TYPE}/workspace/* workspace/runtime/
+fi
 exit 0
