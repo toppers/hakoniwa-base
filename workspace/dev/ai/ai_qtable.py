@@ -35,25 +35,26 @@ for episode in range(100):
   total_time = 0
   done = False
   state = 0
+  total_reward = 0
   #100secs
-  while not done and total_time < 10000:
+  while not done and total_time < 4000:
       action = model.get_action(state)
       next_state, reward, done, _ = env.step(action)
-      
-      print("episode=" + str(episode))
-      print("state=" + str(state))
-      print("reward=" + str(reward))
-      print("action=" + str(action))
-      print("done=" + str(done))
-      print("total_time=" + str(total_time))
+      total_reward = total_reward + reward
+      #print("state=" + str(state))
+      #print("reward=" + str(reward))
+      #print("action=" + str(action))
+      #print("done=" + str(done))
+      #print("total_time=" + str(total_time))
       
       model.learn(state, action, reward, next_state)
       
       state = next_state    
       total_time = total_time + 1
 
-      if done:
-        env.reset()
+  env.reset()
+  print("episode=" + str(episode) + " total_time=" + str(total_time) + " total_reward=" + str(total_reward))
+
 
 print("END")
 env.reset()
