@@ -7,6 +7,7 @@ from binary import binary_writer
 from binary import binary_reader
 import qtable_model
 import hako_env
+import hako
 import time
 import signal
 import hako_robomodel_ev3 as ev3
@@ -20,6 +21,8 @@ signal.signal(signal.SIGINT, handler)
 
 #create hakoniwa env
 env = hako_env.make("base_practice_1", "ev3")
+env.hako.wait_event(hako.HakoEvent['START'])
+env.hako.wait_state(hako.HakoState['RUNNING'])
 
 #get ai model
 model = qtable_model.get_model(env.robo().num_states(), env.robo().num_actions())
@@ -31,7 +34,6 @@ robo = env.robo()
 for episode in range(100):
   total_time = 0
   done = False
-  env.reset()
   state = 0
   #100secs
   while not done and total_time < 10000:
@@ -49,6 +51,9 @@ for episode in range(100):
       
       state = next_state    
       total_time = total_time + 1
+
+      if done:
+        env.reset()
 
 print("END")
 env.reset()
