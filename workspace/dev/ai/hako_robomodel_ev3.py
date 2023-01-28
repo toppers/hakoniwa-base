@@ -79,31 +79,31 @@ class HakoRoboModelEv3:
 
     def rewaord(self, obserbation):
         value = self.ultrasonic_sensor(obserbation)
-        if value >= 110 and value <= 145:
-            return 0.1, False
-        elif value < 110:
-            return -5, False
-        elif value > 145 and value <= 170:
-            return -5, False
+        if (value <= 120):
+            return value, False
+        elif value > 120 and value <= 250:
+            return (120 - value), False
         else:
-            return -10, True
+            return -value, True
 
     def num_actions(self):
         return 6
 
     def action(self, action_no):
+        max = 50
+        min = 20
         if action_no == 0:
-            self.foward(50)
+            self.foward(max)
         elif action_no == 1:
-            self.foward(20)
+            self.foward(min)
         elif action_no == 2:
-            self.turn(20)
+            self.turn(min)
         elif action_no == 3:
-            self.turn(50)
+            self.turn(max)
         elif action_no == 4:
-            self.turn(-20)
+            self.turn(-min)
         else:
-            self.turn(-50)
+            self.turn(-max)
 
     def num_states(self):
         return 4

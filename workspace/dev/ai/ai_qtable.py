@@ -5,7 +5,7 @@ import sys
 from binary import offset_map
 from binary import binary_writer
 from binary import binary_reader
-import qtable_model
+import qtable_model2
 import hako_env
 import hako
 import time
@@ -25,7 +25,7 @@ env.hako.wait_event(hako.HakoEvent['START'])
 env.hako.wait_state(hako.HakoState['RUNNING'])
 
 #get ai model
-model = qtable_model.get_model(env.robo().num_states(), env.robo().num_actions())
+model = qtable_model2.get_model(env.robo().num_states(), env.robo().num_actions())
 
 #do simulation
 
