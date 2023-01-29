@@ -26,6 +26,7 @@ env.hako.wait_state(hako.HakoState['RUNNING'])
 
 #get ai model
 model = qtable_model2.get_model(env.robo().num_states(), env.robo().num_actions())
+model.load('./dev/ai/qtable_model.csv')
 
 #do simulation
 
@@ -53,6 +54,7 @@ for episode in range(100):
       total_time = total_time + 1
 
   env.reset()
+  model.save('./dev/ai/qtable_model.csv')
   print("episode=" + str(episode) + " total_time=" + str(total_time) + " total_reward=" + str(total_reward))
 
 
