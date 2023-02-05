@@ -39,9 +39,9 @@ HakoEv3ColorName = {
 class HakoRoboModelEv3:
     def __init__(self, hako):
         self.hako = hako
-        self.hako.create_pdu_channel(0, 1024, 'Ev3PduActuator')
-        self.hako.subscribe_pdu_channel(1, 1024, 'Ev3PduSensor')
-        self.binary_data = bytearray(1024)
+        self.hako.create_pdu_channel(0, 196, 'Ev3PduActuator')
+        self.hako.subscribe_pdu_channel(1, 248, 'Ev3PduSensor')
+        self.binary_data = bytearray(196)
         self.actions = { 0: binary_reader.binary_read(self.hako.offmap, 'Ev3PduActuator', self.binary_data) }
 
     def delta_usec(self):
