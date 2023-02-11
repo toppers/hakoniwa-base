@@ -24,7 +24,7 @@ class QtableModel:
         if epsilon < np.random.uniform(0,1):
             next_action = np.argmax(self.q_table[next_state])
         else:
-            next_action = np.random.randint(low = 0, high = self.num_states -1)        
+            next_action = np.random.randint(low = 0, high = self.num_actions -1)        
         return next_action
 
     def learn(self, state, action, reward, next_state):
