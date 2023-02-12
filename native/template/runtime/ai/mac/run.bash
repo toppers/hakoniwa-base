@@ -36,6 +36,7 @@ export PYTHONPATH="/usr/local/lib/hakoniwa:$PYTHONPATH"
 export PYTHONPATH="/usr/local/lib/hakoniwa/py:$PYTHONPATH"
 export PATH="/usr/local/bin/hakoniwa:${PATH}"
 export LD_LIBRARY_PATH="/usr/local/lib/hakoniwa:${LD_LIBRARY_PATH}"
+export DYLD_LIBRARY_PATH="/usr/local/lib/hakoniwa:${DYLD_LIBRARY_PATH}"
 
 DELTA_MSEC=20
 MAX_DELAY_MSEC=100
