@@ -20,7 +20,7 @@ def handler(signum, frame):
 signal.signal(signal.SIGINT, handler)
 
 #create hakoniwa env
-env = hako_env.make("base_practice_1", "ev3")
+env = hako_env.make("Ev3TransportModel", "ev3")
 env.hako.wait_event(hako.HakoEvent['START'])
 env.hako.wait_state(hako.HakoState['RUNNING'])
 

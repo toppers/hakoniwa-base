@@ -22,7 +22,7 @@ print("START TB3 TEST")
 signal.signal(signal.SIGINT, handler)
 
 #create hakoniwa env
-env = hako_env.make("base_practice_1", "tb3")
+env = hako_env.make("MiconTB3RoboModel", "tb3")
 print("WAIT START:")
 env.hako.wait_event(hako.HakoEvent['START'])
 print("WAIT RUNNING:")
@@ -44,7 +44,7 @@ for episode in range(1):
     sensors = env.hako.execute()
       
     img = env.robo().camera_data(sensors)
-    with open("camera.jpg" , 'bw') as f:
+    with open("camera-01.jpg" , 'bw') as f:
         f.write(img)
     
     scan_datas = env.robo().laser_scan(sensors)
