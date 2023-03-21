@@ -37,5 +37,8 @@ do
     sleep 1
 done
 
-wait
+while [ 1 ]
+do
+    sleep 10
+done
 
