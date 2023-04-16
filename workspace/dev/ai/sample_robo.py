@@ -64,8 +64,8 @@ for episode in range(1):
     #camera sensor
     if total_time % 100 == 0:
       img = robo.get_state("camera_image_jpg", sensors)
-      image_data = img['data']
-      file_data = struct.pack('B' * len(image_data), *image_data)
+      file_data = img['data__raw']
+      #file_data = struct.pack('B' * len(image_data), *image_data)
       with open("camera-01.jpg" , 'bw') as f:
           f.write(file_data)
 
