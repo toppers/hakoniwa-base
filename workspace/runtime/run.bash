@@ -5,7 +5,7 @@
 #export UDP_SRV_PORT=54001
 #export UDP_SND_PORT=54002
 #export CORE_IPADDR=172.30.224.33
-
+cp hakoniwa-core-cpp-client/py/hako_binary/binary_reader.py  /usr/local/lib/hakoniwa/py/hako_binary/binary_reader.py
 ASSET_DEF=asset_def.txt
 grep mqtt ${ASSET_DEF} > /dev/null
 HAS_MQTT=$?
@@ -26,7 +26,9 @@ hako-master ${DELTA_MSEC} ${MAX_DELAY_MSEC} ${CORE_IPADDR}:${GRPC_PORT} ${UDP_SR
 
 sleep 1
 
-#cp ./dev/ai/hako_robomodel_ev3.py /usr/local/lib/hakoniwa/py/
+#cp ./dev/ai/hako_robomodel_any.py /usr/local/lib/hakoniwa/py/
+#cp ./dev/ai/binary_io.py /usr/local/lib/hakoniwa/py/hako_binary/
+#cp ./dev/ai/binary_reader.py /usr/local/lib/hakoniwa/py/hako_binary/
 LAST_PID=
 for entry in `cat ${ASSET_DEF}`
 do
