@@ -12,7 +12,7 @@ import time
 import signal
 from types import MethodType
 import hako_robomodel_any
-
+import struct
 
 def handler(signum, frame):
   print(f'SIGNAL(signum={signum})')
@@ -24,7 +24,7 @@ print("START TB3 TEST")
 signal.signal(signal.SIGINT, handler)
 
 #create hakoniwa env
-env = hako_env.make("arm_robot", "any", "dev/ai/custom.json")
+env = hako_env.make("SampleRobo", "any", "dev/ai/custom.json")
 print("WAIT START:")
 env.hako.wait_event(hako.HakoEvent['START'])
 print("WAIT RUNNING:")
@@ -47,22 +47,37 @@ for episode in range(1):
   #100secs
   while not done and total_time < 4000:
     
-    f = open('dev/ai/cmd.txt', 'r')
-    value = f.readlines()
-    f.close()
+    # input command
+    if total_time % 100 == 0:
+      f = open('dev/ai/cmd.txt', 'r')
+      value = f.readlines()
+      f.close()
     
     sensors = env.hako.execute()
-    
-    servo_angle = robo.get_action('servo_angle')
-    servo_angle['angular']['y'] = float(value[0])
-    #servo_angle2 = robo.get_action('servo_angle2')
-    #servo_angle2['angular']['y'] = -10
-    #servo_angle3 = robo.get_action('servo_angle3')
-    #servo_angle3['angular']['y'] = 10
-    #servo_angle4 = robo.get_action('servo_angle4')
-    #servo_angle4['angular']['y'] = -1
-    #pincher_cmd = robo.get_action('pincher_cmd')
-    #pincher_cmd['linear']['x'] = -1
+
+    #laser scan
+    scan = robo.get_state("scan", sensors)
+    scan_ranges = scan['ranges']
+    scan_min = min(min(scan_ranges[0:15]), min(scan_ranges[345:359]))
+    #print("scan=" + str(scan_min))
+
+    #camera sensor
+    if total_time % 100 == 0:
+      img = robo.get_state("camera_image_jpg", sensors)
+      image_data = img['data']
+      file_data = struct.pack('B' * len(image_data), *image_data)
+      with open("camera-01.jpg" , 'bw') as f:
+          f.write(file_data)
+
+    #motor control
+    if (scan_min >= 0.2):
+      motor = robo.get_action('cmd_vel')
+      motor['linear']['x'] = float(value[0])
+      motor['angular']['z'] = 0.0
+    else:
+      motor = robo.get_action('cmd_vel')
+      motor['linear']['x'] = 0.0
+      motor['angular']['z'] = -2.0
     
     for channel_id in robo.actions:
       robo.hako.write_pdu(channel_id, robo.actions[channel_id])
