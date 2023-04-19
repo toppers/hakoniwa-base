@@ -26,7 +26,7 @@ sudo mv ${LIBNAME} ${HAKO_LIBDIR}/libshakoc.dylib
 sudo cp -rp ./hakoniwa-core-cpp-client/py /usr/local/lib/hakoniwa/
 
 #install Python3
-brew install python3
+apt install python3
 pip3 install numpy
 
 #install hakoniwa-conductor
