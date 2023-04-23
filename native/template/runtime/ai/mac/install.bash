@@ -27,7 +27,7 @@ fi
 if [ $1 = arm ]
 then
 LIBNAME=libshakoc.arm64.dylib
-wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.1/${LIBNAME}
+wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.2/${LIBNAME}
 else
 LIBNAME=libshakoc.dylib
 wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.0/${LIBNAME}
