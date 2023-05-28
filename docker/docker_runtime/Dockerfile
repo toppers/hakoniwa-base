@@ -70,15 +70,15 @@ RUN cp -rp py /usr/local/lib/hakoniwa/
 ENV PYTHONPATH="/usr/local/lib/hakoniwa/py:$PYTHONPATH"
 RUN cp cmake-build/src/proxy/hako-proxy /usr/local/bin/hakoniwa
 RUN cp cmake-build/core/sample/base-procs/hako-cmd/hako-cmd /usr/local/bin/hakoniwa
+RUN pip3 install pyquaternion
+RUN pip3 install scipy
 
 WORKDIR /root
 RUN git clone --recursive https://github.com/toppers/hakoniwa-conductor.git
 WORKDIR /root/hakoniwa-conductor/main
 RUN bash install.bash
 
-
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace
-
 
 CMD [ "/root/workspace/run.bash" ]
