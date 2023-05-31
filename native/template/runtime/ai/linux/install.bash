@@ -20,7 +20,7 @@ fi
 LIBNAME=libshakoc.so
 wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.2/${LIBNAME}
 sudo cp ${LIBNAME} ${HAKO_LIBDIR}/hakoc.so
-sudo mv ${LIBNAME} ${HAKO_LIBDIR}/libshakoc.dylib
+sudo mv ${LIBNAME} ${HAKO_LIBDIR}/libshakoc.so
 
 #install py libraries
 sudo cp -rp ./hakoniwa-core-cpp-client/py /usr/local/lib/hakoniwa/
