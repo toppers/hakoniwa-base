@@ -70,7 +70,10 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > ${RUST_HOME}/rus
 ENV PATH $PATH:$CARGO_HOME/bin
 
 RUN apt-get install -y libc++-dev libc++abi-dev
-
+RUN apt-get install -y python3-pip  libffi-dev python3-dev
+RUN pip3 install numpy
+RUN pip3 install pyquaternion
+RUN pip3 install scipy
 WORKDIR /root
 RUN git clone --recursive https://github.com/toppers/athrill-device.git
 
