@@ -16,7 +16,7 @@
     "target_channels": [
 	    {
 		    "channel_id": 0,
-		    "size": 1024
+		    "size": 196
 	    }
     ]
 }
