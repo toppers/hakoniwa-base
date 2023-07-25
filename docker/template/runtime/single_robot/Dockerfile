@@ -88,6 +88,27 @@ RUN bash build.bash
 
 RUN cp /root/athrill-device/device/hakotime/cmake-build/libhakotime.* /usr/local/lib/hakoniwa/
 RUN cp /root/athrill-device/device/hakopdu/cmake-build/libhakopdu.* /usr/local/lib/hakoniwa/
+RUN cp /root/athrill-device/device/hakopdu/cmake-build/hakoniwa-core-cpp-client/src/hakoc/libshakoc.* /usr/local/lib/hakoniwa/
+RUN cp /root/athrill-device/device/hakopdu/cmake-build/hakoniwa-core-cpp-client/src/proxy/hako-proxy /usr/local/bin/hakoniwa/
+RUN cp /root/athrill-device/device/hakopdu/cmake-build/hakoniwa-core-cpp-client/core/sample/base-procs/hako-cmd/hako-cmd /usr/local/bin/hakoniwa/
+
+ENV PYTHONPATH="/usr/local/lib/hakoniwa:$PYTHONPATH"
+WORKDIR /root
+RUN git clone --recursive https://github.com/toppers/hakoniwa-core-cpp-client.git
+WORKDIR /root/hakoniwa-core-cpp-client
+RUN apt-get install -y python3-pip  libffi-dev python3-dev
+RUN bash build.bash
+RUN cp cmake-build/src/hakoc/libshakoc.* /usr/local/lib/hakoniwa/
+RUN cp cmake-build/src/hakoc/libshakoc.so /usr/local/lib/hakoniwa/hakoc.so
+RUN cp -rp py /usr/local/lib/hakoniwa/
+ENV PYTHONPATH="/usr/local/lib/hakoniwa/py:$PYTHONPATH"
+RUN cp cmake-build/src/proxy/hako-proxy /usr/local/bin/hakoniwa
+RUN cp cmake-build/core/sample/base-procs/hako-cmd/hako-cmd /usr/local/bin/hakoniwa
+
+WORKDIR /root
+RUN git clone --recursive https://github.com/toppers/hakoniwa-conductor.git
+WORKDIR /root/hakoniwa-conductor/main
+RUN bash install.bash
 
 WORKDIR /root/workspace
 
