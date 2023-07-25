@@ -3,7 +3,8 @@
 which hako-master > /dev/null
 if [ $? -ne 0 ]
 then
-    bash install.bash
+    echo "ERROR: not found hako-master"
+    exit 1
 fi
 
 echo "INFO: ACTIVATING HAKO-MASTER"
