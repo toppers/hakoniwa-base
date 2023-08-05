@@ -48,8 +48,6 @@ HAKO_CONDUCTOR_PID=$!
 
 sleep 1
 
-cp ./workspace/dev/ai/hako_robomodel_ev3.py /usr/local/lib/hakoniwa/py/
-
 cd workspace
 PYTHON_PROG=`cat ./runtime/asset_def.txt`
 echo "INFO: ACTIVATING :${PYTHON_PROG}"
@@ -58,10 +56,5 @@ HAKO_AI_PROG_PID=$!
 
 while [ 1 ]
 do
-    ps aux | awk '{print $2}' | grep -x ${HAKO_AI_PROG_PID} > /dev/null
-    if [ $? -ne 0 ]
-    then
-        signal_handler
-    fi
-    sleep 1
+    sleep 100
 done
