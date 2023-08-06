@@ -1,7 +1,17 @@
 #!/bin/bash
 
+ASSET_ACT_MODE="PYTHON"
+if [ $# -eq 1 ]
+then
+    echo "INFO: ATHRILL MODE"
+    ASSET_ACT_MODE="ATHRILL"
+else
+    echo "INFO: PYTHON MODE"
+fi
+ASSET_DEF="runtime/asset_def.txt"
+
 HAKO_CONDUCTOR_PID=
-HAKO_AI_PROG_PID=
+HAKO_ASSET_PROG_PID=
 function signal_handler()
 {
     echo "trapped"
@@ -13,9 +23,13 @@ function signal_handler()
     then
         :
     else
-        echo "KILLING: ${HAKO_AI_PROG_PID}"
-        kill -s TERM ${HAKO_AI_PROG_PID}
+        if [ ! -z ${HAKO_ASSET_PROG_PID} ]
+        then
+            echo "KILLING: ASSET PROG ${HAKO_ASSET_PROG_PID}"
+            kill -s TERM ${HAKO_ASSET_PROG_PID}
+        fi
     fi
+    echo "KILLING: hakoniwa-conductor ${HAKO_CONDUCTOR_PID}"
     kill -s TERM ${HAKO_CONDUCTOR_PID}
 
     exit 0
@@ -43,17 +57,53 @@ MAX_DELAY_MSEC=100
 CORE_IPADDR=127.0.0.1
 GRPC_PORT=50051
 echo "INFO: ACTIVATING HAKONIWA-CONDUCTOR"
-hakoniwa-conductor ${DELTA_MSEC} ${MAX_DELAY_MSEC} ${CORE_IPADDR}:${GRPC_PORT}  > /dev/null &  
+hakoniwa-conductor ${DELTA_MSEC} ${MAX_DELAY_MSEC} ${CORE_IPADDR}:${GRPC_PORT}   &  
 HAKO_CONDUCTOR_PID=$!
 
 sleep 1
 
-cd workspace
-PYTHON_PROG=`cat ./runtime/asset_def.txt`
-echo "INFO: ACTIVATING :${PYTHON_PROG}"
-python3 ${PYTHON_PROG} &
-HAKO_AI_PROG_PID=$!
+function activate_python()
+{
+    HAKO_ASSET_PROG_PID=
+    for entry in `cat ${ASSET_DEF}`
+    do
+        PYTHON_PROG=`echo ${entry}  | awk -F: '{print $1}'`
+        echo "INFO: ACTIVATING :${PYTHON_PROG}"
+        python3 ${PYTHON_PROG} &
+        HAKO_ASSET_PROG_PID="$! ${HAKO_ASSET_PROG_PID}"
+        sleep 1
+    done
+}
+function activate_athrill()
+{
+    HAKO_ASSET_PROG_PID=
+    for info in `cat ${ASSET_DEF}`
+    do
+        TYPE_NAME=`echo $info | awk -F: '{print $1}'`
+        ID=`echo $info | awk -F: '{print $2}'`
+        LOG=`echo $info | awk -F: '{print $3}'`
+        ASSET_NAME=${TYPE_NAME}-${ID}
+        echo "INFO: START ${ASSET_NAME}"
+        if [ "${LOG}" = "" ]
+        then
+            hako-proxy ./runtime/params/${ASSET_NAME}/proxy_config.json &
+        else
+            hako-proxy ./runtime/params/${ASSET_NAME}/proxy_config.json > ${LOG} &
+        fi
+        HAKO_ASSET_PROG_PID="$! ${HAKO_ASSET_PROG_PID}"
+        sleep 1
+    done
+}
 
+cd workspace
+if [ $ASSET_ACT_MODE = "PYTHON" ]
+then
+    activate_python
+else
+    activate_athrill
+fi
+
+echo "START"
 while [ 1 ]
 do
     sleep 100
