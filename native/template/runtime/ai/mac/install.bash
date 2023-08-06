@@ -28,6 +28,13 @@ if [ $1 = arm ]
 then
     LIBNAME=libshakoc.arm64.dylib
     wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.3/${LIBNAME}
+    wget https://github.com/toppers/athrill-device/releases/download/v1.1.4/libhakopdu.arm64.dylib
+    wget https://github.com/toppers/athrill-device/releases/download/v1.1.4/libhakotime.arm64.dylib
+    wget https://github.com/toppers/athrill-target-v850e2m/releases/download/v1.0.2/athrill2.arm64
+    sudo mv libhakopdu.arm64.dylib /usr/local/lib/hakoniwa/libhakopdu.dylib
+    sudo mv libhakotime.arm64.dylib /usr/local/lib/hakoniwa/libhakotime.dylib
+    chmod +x athrill2.arm64
+    sudo mv athrill2.arm64 /usr/local/lib/hakoniwa/athrill2
 else
     LIBNAME=libshakoc.dylib
     wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.0/${LIBNAME}
