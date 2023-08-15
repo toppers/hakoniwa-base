@@ -12,25 +12,38 @@ ASSET_DEF="runtime/asset_def.txt"
 
 HAKO_CONDUCTOR_PID=
 HAKO_ASSET_PROG_PID=
+IS_OCCURED_SIGEVENT="FALSE"
 function signal_handler()
 {
+    IS_OCCURED_SIGEVENT="TRUE"
     echo "trapped"
-    if [ -z ${HAKO_CONDUCTOR_PID} ]
+}
+function kill_process()
+{
+    echo "trapped"
+    if [ -z "$HAKO_CONDUCTOR_PID" ]
     then
         exit 0
     fi
-    if [ -z ${HAKO_CONDUCTOR_PID} ]
-    then
-        :
-    else
-        if [ ! -z ${HAKO_ASSET_PROG_PID} ]
+    
+    # HAKO_ASSET_PROG_PID に保存されている各PIDをkill
+    for pid in $HAKO_ASSET_PROG_PID; do
+        echo "KILLING: ASSET PROG $pid"
+        kill -s TERM $pid || echo "Failed to kill ASSET PROG $pid"
+    done
+    
+    echo "KILLING: hakoniwa-conductor $HAKO_CONDUCTOR_PID"
+    kill -9 "$HAKO_CONDUCTOR_PID" || echo "Failed to kill hakoniwa-conductor"
+
+    while [ 1 ]
+    do
+        NUM=$(ps aux | grep hakoniwa-conductor | grep -v grep | wc -l)
+        if [ $NUM -eq 0 ]
         then
-            echo "KILLING: ASSET PROG ${HAKO_ASSET_PROG_PID}"
-            kill -s TERM ${HAKO_ASSET_PROG_PID}
+            break
         fi
-    fi
-    echo "KILLING: hakoniwa-conductor ${HAKO_CONDUCTOR_PID}"
-    kill -s TERM ${HAKO_CONDUCTOR_PID}
+        sleep 1
+    done
 
     exit 0
 }
@@ -104,7 +117,11 @@ else
 fi
 
 echo "START"
-while [ 1 ]
-do
-    sleep 100
+while true; do
+    echo "Press ENTER to stop..."
+    read input
+    if [ -z "$input" ]; then
+        kill_process
+        break
+    fi
 done
