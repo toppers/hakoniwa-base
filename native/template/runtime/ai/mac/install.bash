@@ -36,8 +36,8 @@ then
     chmod +x athrill2.arm64
     sudo mv athrill2.arm64 /usr/local/lib/hakoniwa/athrill2
 else
-    LIBNAME=libshakoc.dylib
-    wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.0/${LIBNAME}
+    LIBNAME=libshakoc.intel.dylib
+    wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.3/${LIBNAME}
 fi
 sudo cp ${LIBNAME} ${HAKO_LIBDIR}/hakoc.so
 sudo mv ${LIBNAME} ${HAKO_LIBDIR}/libshakoc.dylib
@@ -61,8 +61,8 @@ then
     HAKO_CONDUCTOR=hakoniwa-conductor-mac-arm64
     wget https://github.com/toppers/hakoniwa-conductor/releases/download/v1.0.3/${HAKO_CONDUCTOR}
 else
-    HAKO_CONDUCTOR=hakoniwa-conductor-mac
-    wget https://github.com/toppers/hakoniwa-conductor/releases/download/v1.0.0/${HAKO_CONDUCTOR}
+    HAKO_CONDUCTOR=hakoniwa-conductor-mac-intel
+    wget https://github.com/toppers/hakoniwa-conductor/releases/download/v1.0.3/${HAKO_CONDUCTOR}
 fi
 chmod +x ${HAKO_CONDUCTOR} 
 sudo mv ${HAKO_CONDUCTOR} /usr/local/bin/hakoniwa/hakoniwa-conductor
