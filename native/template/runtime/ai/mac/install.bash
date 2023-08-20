@@ -36,8 +36,15 @@ then
     chmod +x athrill2.arm64
     sudo mv athrill2.arm64 /usr/local/lib/hakoniwa/athrill2
 else
-    LIBNAME=libshakoc.intel.dylib
+    LIBNAME=libshakoc.i386.dylib
     wget https://github.com/toppers/hakoniwa-core-cpp-client/releases/download/v1.0.3/${LIBNAME}
+    wget https://github.com/toppers/athrill-device/releases/download/v1.1.4/libhakopdu.i386.dylib
+    wget https://github.com/toppers/athrill-device/releases/download/v1.1.4/libhakotime.i386.dylib
+    wget https://github.com/toppers/athrill-target-v850e2m/releases/download/v1.0.2/athrill2.i386
+    sudo mv libhakopdu.i386.dylib /usr/local/lib/hakoniwa/libhakopdu.dylib
+    sudo mv libhakotime.i386.dylib /usr/local/lib/hakoniwa/libhakotime.dylib
+    chmod +x athrill2.i386
+    sudo mv athrill2.i386 /usr/local/lib/hakoniwa/athrill2
 fi
 sudo cp ${LIBNAME} ${HAKO_LIBDIR}/hakoc.so
 sudo mv ${LIBNAME} ${HAKO_LIBDIR}/libshakoc.dylib
@@ -61,7 +68,7 @@ then
     HAKO_CONDUCTOR=hakoniwa-conductor-mac-arm64
     wget https://github.com/toppers/hakoniwa-conductor/releases/download/v1.0.3/${HAKO_CONDUCTOR}
 else
-    HAKO_CONDUCTOR=hakoniwa-conductor-mac-intel
+    HAKO_CONDUCTOR=hakoniwa-conductor-mac-i386
     wget https://github.com/toppers/hakoniwa-conductor/releases/download/v1.0.3/${HAKO_CONDUCTOR}
 fi
 chmod +x ${HAKO_CONDUCTOR} 
